@@ -15,4 +15,4 @@ will move the node mynode.foo.com into the environment myenv
 knife role flip MyRole myenv
 ````
 
-will move all nodes containing the role MyRole in their expanded runlists into the environment myenv
+will move all nodes containing the role MyRole in their runlists into the environment myenv
