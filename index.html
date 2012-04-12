@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Knife-flip : A knife plugin to quickly move a node between environments" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Knife-flip</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jonlives/knife-flip">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Knife-flip</h1>
+          <h2 id="project_tagline">A knife plugin to quickly move a node between environments</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/jonlives/knife-flip/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/jonlives/knife-flip/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>knife-flip</h1>
+
+<p>A knife plugin to move a node, or all nodes in a role, to a specific environment</p>
+
+<h2>SCRIPT INSTALL</h2>
+
+<p>Copy *.rb script from lib/chef/knife to your ~/.chef/plugins/knife directory.</p>
+
+<h2>GEM INSTALL</h2>
+
+<p>knife-flip is available on rubygems.org - if you have that source in your gemrc, you can simply use:</p>
+
+<pre><code>gem install knife-flip
+</code></pre>
+
+<h2>What it does</h2>
+
+<pre><code>knife node flip mynode.foo.com myenv
+</code></pre>
+
+<p>will move the node mynode.foo.com into the environment myenv</p>
+
+<pre><code>knife role flip MyRole myenv
+</code></pre>
+
+<p>will move all nodes containing the role MyRole in their runlists into the environment myenv</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Knife-flip maintained by <a href="https://github.com/jonlives">jonlives</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
