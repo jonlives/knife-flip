@@ -54,6 +54,10 @@ module KnifeFlip
       node.save
 
       knife_search = Chef::Knife::Search.new
+      # ensure that 'start' and 'rows' are set since we don't seem to properly inherit the +config+ hash and therefore don't get sane defaults
+      config[:start] = 0
+      config[:rows] = 1000
+      knife_search.config = config  # without this, the +config+ hash is empty
       knife_search.name_args = ['node', "fqdn:#{@node_name}"]
       knife_search.run
 
