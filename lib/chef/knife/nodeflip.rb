@@ -25,15 +25,15 @@ module KnifeFlip
         exit 1
       end
 
-      puts "Looking for an fqdn of #{@node_name}"
+      puts "Looking for an fqdn of #{@node_name} or name of #{@node_name}"
 
       searcher = Chef::Search::Query.new
-      result = searcher.search(:node, "fqdn:#{@node_name}")
+      result = searcher.search(:node, "fqdn:#{@node_name} OR name:#{@node_name}")
 
       knife_search = Chef::Knife::Search.new
       node = result.first.first
       if node.nil?
-        puts "Could not find a node with the fqdn of #{@node_name}"
+        puts "Could not find a node with the fqdn of #{@node_name} or name of #{@node_name}"
         exit 1
       end
 
@@ -58,7 +58,7 @@ module KnifeFlip
       config[:start] = 0
       config[:rows] = 1000
       knife_search.config = config  # without this, the +config+ hash is empty
-      knife_search.name_args = ['node', "fqdn:#{@node_name}"]
+      knife_search.name_args = ['node', "fqdn:#{@node_name} OR name:#{@node_name}"]
       knife_search.run
 
     end
