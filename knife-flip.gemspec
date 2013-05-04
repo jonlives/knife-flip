@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   ## the sub! line in the Rakefile
   s.name              = 'knife-flip'
   s.version           = '0.1.6'
-  s.date              = '2013-03-22'
+  s.date              = '2013-05-04'
   s.rubyforge_project = 'knife-flip'
 
   ## Make sure your summary is short. The description may be as long
