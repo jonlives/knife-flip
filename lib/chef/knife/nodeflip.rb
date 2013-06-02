@@ -2,6 +2,7 @@
 
 
 require 'chef/knife'
+require 'colorize'
 
 module KnifeFlip
   class NodeFlip < Chef::Knife
@@ -76,6 +77,9 @@ module KnifeFlip
 
     # Compare the two environments
     def show_environmental_differences
+      # Re-iterate to the user that this won't flip you
+      remind_user_about_preview
+
       # Load up the node information
       load_node_object
 
@@ -119,17 +123,13 @@ module KnifeFlip
 
     # Extract the source environment from the node object
     def get_source_environment
-      @source_environment = @node.environment
+      @source_environment = @node.chef_environment
     end
 
     # For the node being passed in, find and return an array of cookboock names
     def get_cookbooks_for_node
-      puts "Getting cookbooks for #{@node_name} or name of #{@node_name}"
-
       cookbooks = @node.recipes.map {|recipe| recipe.match('^[^:]+')[0] }.uniq
 
-      puts "Found #{cookbooks.count} unique cookbooks for node #{@node_name}"
-      
       return cookbooks
     end
 
@@ -149,22 +149,33 @@ module KnifeFlip
     # Takes in an array of modified cookbook names, the hash of uploaded cookbooks, and the hash of cookbooks
     # from the environment being checked
     def show_cookbook_differences(changed_cookbook_names, source_hash, target_hash)
-      (1..90).each { print "=" }
+      changed_cookbook_count = changed_cookbook_names.size
+      (1..110).each { print "=".colorize(:cyan) }
       puts ""
-      if changed_cookbook_names.size != 0 then
-        puts "#{changed_cookbook_names.size} differences between environments"
+      if changed_cookbook_count != 0 then
+        puts "#{changed_cookbook_count} difference(s) between environments"
         changed_cookbook_names.each do |cookbook_name|
-          puts "#{cookbook_name}: #{@source_environment} version: #{source_hash[cookbook_name]} " +
-            "will be changed to #{target_hash[cookbook_name]} in #{@environment}"
+          puts "#{cookbook_name}".colorize(:yellow) + ": " + "#{@source_environment}".colorize(:magenta) +
+               " version: " + "#{source_hash[cookbook_name]} ".colorize(:red) +
+               "will be changed to " + "#{target_hash[cookbook_name]}".colorize(:green) + " in " +
+               "#{@environment}".colorize(:magenta)
         end
       elsif (@source_environment == @environment) and (changed_cookbook_names.size == 0) then
         puts "The environment the node is on and the one you are flipping to are identical, and thus "
-        puts "there are no cookbook differences"
+        puts "there are " + "NO".colorize(:red) +" cookbook differences"
       else
-        puts "No differences between the #{@source_environment} and the #{@environment} environment for this node"
+        puts "No differences".colorize(:red) +
+              " between the cookbook versions in the " + "#{@source_environment}".colorize(:magenta) + " and the " +
+              "#{@environment}".colorize(:magenta) + " environment for this node"
       end
-      (1..90).each { print "=" }
+      (1..110).each { print "=".colorize(:cyan) }
       puts ""
+    end
+
+    # Print out warning for users so they know that preview is a dry run
+    def remind_user_about_preview
+      puts "NOTE NOTE NOTE".colorize(:red) + " Running with --preview " + "WILL NOT".colorize(:red) +
+           " flip your node\n"
     end
   end
 end
