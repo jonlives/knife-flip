@@ -16,10 +16,12 @@ gem install knife-flip
 ## What it does
 
 ````
-knife node flip mynode.foo.com myenv
+knife node flip mynode.foo.com myenv [--preview]
 ````
 
-will move the node mynode.foo.com into the environment myenv
+will move the node mynode.foo.com into the environment myenv. Passing in the --preview option
+it will dry-run the flip and show you what cookbooks and versions would be applied if it were actually
+flipped.
 
 
 ````
