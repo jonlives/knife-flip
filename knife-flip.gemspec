@@ -13,14 +13,14 @@ Gem::Specification.new do |s|
   ## If your rubyforge_project name is different, then edit it and comment out
   ## the sub! line in the Rakefile
   s.name              = 'knife-flip'
-  s.version           = '0.1.7'
-  s.date              = '2013-06-06'
+  s.version           = '0.1.9'
+  s.date              = '2014-07-02'
   s.rubyforge_project = 'knife-flip'
 
   ## Make sure your summary is short. The description may be as long
   ## as you like.
-  s.summary     = "A knife plugin to move a node, or all nodes in a role, to a specific environment"
-  s.description = "A knife plugin to move a node, or all nodes in a role, to a specific environment"
+  s.summary     = "A knife plugin to move a node, or all nodes in a role or environment, to a specific environment"
+  s.description = "A knife plugin to move a node, or all nodes in a role or environment, to a specific environment"
 
   ## List the primary authors. If there are a bunch of authors, it's probably
   ## better to set the email to an email list or something. If you don't have
@@ -53,6 +53,7 @@ Gem::Specification.new do |s|
     knife-flip.gemspec
     lib/chef/knife/nodeflip.rb
     lib/chef/knife/roleflip.rb
+    lib/chef/knife/environmentflip.rb
     lib/knife-flip.rb
   ]
   # = MANIFEST =
