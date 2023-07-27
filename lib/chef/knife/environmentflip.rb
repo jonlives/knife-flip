@@ -56,7 +56,7 @@ module KnifeFlip
 
       q_nodes = Chef::Search::Query.new
       node_query = "chef_environment:#{@old_env}"
-      query_nodes = URI.escape(node_query,
+      query_nodes = URI::Parser.new.escape(node_query,
                                Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
 
       result_items = []

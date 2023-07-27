@@ -62,7 +62,7 @@ module KnifeFlip
       
       q_nodes = Chef::Search::Query.new
       node_query = "role:#{@role}"
-      query_nodes = URI.escape(node_query,
+      query_nodes = URI::Parser.new.escape(node_query,
                          Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
 
       result_items = []
